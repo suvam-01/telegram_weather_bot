@@ -5,7 +5,7 @@ const axios = require('axios');
 console.log(process.env)
 require('dotenv').config()
 const bot = new Telegraf(process.env.BOT_TOKEN);
-
+const apiKey = process.env.API_KEY;
 
 try{
 
@@ -18,7 +18,7 @@ try{
 
         ctx.reply(`Let me check the weather for ${userInput} `);
 
-        const response=await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=03df0b38050c0b1ab90cdc5e68ccba3b`);
+        const response=await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apiKey}`);
         const data=response.data;
         const weather=data.weather[0].description;
         const temperature=data.main.temp-273.15;
